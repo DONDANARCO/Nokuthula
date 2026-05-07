@@ -1,6 +1,32 @@
 const topbar = document.querySelector(".topbar");
 const revealTargets = document.querySelectorAll(".section, .card, .hero-card, .gallery img, .footer");
 
+async function hydrateEditableContent() {
+  try {
+    const response = await fetch("/api/content");
+    if (!response.ok) return;
+
+    const data = await response.json();
+    const content = data.content || {};
+
+    Object.entries(content).forEach(([key, value]) => {
+      if (typeof value !== "string") return;
+      const el = document.querySelector(`[data-edit-key="${key}"]`);
+      if (!el) return;
+
+      if (el.tagName === "A" && key.toLowerCase().includes("link")) {
+        el.setAttribute("href", value.trim());
+      } else {
+        el.textContent = value;
+      }
+    });
+  } catch {
+    // Keep default page copy when API is unavailable.
+  }
+}
+
+hydrateEditableContent();
+
 const updateTopbar = () => {
   if (!topbar) return;
   topbar.classList.toggle("is-scrolled", window.scrollY > 12);

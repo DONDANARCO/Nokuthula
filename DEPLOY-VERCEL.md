@@ -6,10 +6,29 @@ This site is ready for static deployment on Vercel.
 
 Before deploying, update these placeholders:
 
-- In `index.html`, `booking.html`, and `contact.html`:
-  - Replace `YOUR_EMAIL@example.com` with your real mailbox in all `formsubmit.co` form actions.
 - In `index.html` and `booking.html`:
   - Replace the calendar link/embed URLs with your real booking calendar.
+
+## 1.1) AWS DynamoDB setup (for contact/query form storage)
+
+Create one DynamoDB table in AWS:
+
+- Table name: `footmed_form_submissions` (or your preferred name)
+- Partition key: `PK` (String)
+- Sort key: `SK` (String)
+
+In Vercel project settings, add environment variables:
+
+- `AWS_REGION` (you provided `ap-northeast-1`)
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `DYNAMODB_TABLE_NAME` (you provided `NMashabpodiatrist`)
+- `DYNAMODB_TABLE_PARTITION_KEY` (`PK`)
+- `DYNAMODB_TABLE_SORT_KEY` (`SK`)
+- `ADMIN_API_KEY` (choose a strong secret for `/admin.html`)
+
+The forms in `index.html` and `contact.html` already post to `/api/submissions`.
+The admin dashboard is available at `/admin.html`.
 
 ## 2) Deploy from Vercel dashboard (easiest)
 

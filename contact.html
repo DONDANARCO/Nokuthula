@@ -30,9 +30,9 @@
             <p class="section-intro">
               Complete the form below and your query will be sent to your mailbox.
             </p>
-            <form class="form" action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST">
-              <input type="hidden" name="_subject" value="Contact Query - Footmed Podiatrist Inc" />
-              <input type="hidden" name="_captcha" value="false" />
+            <form class="form" action="/api/submissions" method="POST">
+              <input type="hidden" name="formType" value="contact-page" />
+              <input type="hidden" name="sourcePage" value="contact.html" />
               <label for="contact-name">Name</label>
               <input id="contact-name" name="name" type="text" required />
               <label for="contact-email">Email</label>

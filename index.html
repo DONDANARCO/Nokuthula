@@ -76,8 +76,8 @@
         <div class="container hero-grid">
           <div>
             <p class="eyebrow">Foot doctor in Polokwane</p>
-            <h1>Footmed Podiatrist Inc: trusted foot pain and heel pain treatment</h1>
-            <p class="lead">
+            <h1 data-edit-key="heroTitle">Footmed Podiatrist Inc: trusted foot pain and heel pain treatment</h1>
+            <p class="lead" data-edit-key="heroLead">
               Professional podiatry care in Polokwane Central for heel pain,
               plantar fasciitis, diabetic foot care, sports injuries, ingrown
               toenails, and custom orthotics.
@@ -169,8 +169,8 @@
             <article class="card">
               <p class="meta">As seen on TV</p>
               <h3>Television feature</h3>
-              <p>Showcase your interview clip to build patient confidence.</p>
-              <a class="btn btn-primary" href="#" target="_blank" rel="noopener noreferrer">Watch interview clip</a>
+              <p data-edit-key="tvFeatureText">Showcase your interview clip to build patient confidence.</p>
+              <a class="btn btn-primary" href="#" data-edit-key="tvFeatureLink" target="_blank" rel="noopener noreferrer">Watch interview clip</a>
             </article>
             <article class="card">
               <p class="meta">Credentials</p>
@@ -294,9 +294,9 @@
         <div>
           <h3>Contact Footmed Podiatrist Inc</h3>
           <p>Questions or referrals? Send your query and we will respond by email.</p>
-          <form class="form" action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST">
-            <input type="hidden" name="_subject" value="Contact Query - Footmed Podiatrist Inc" />
-            <input type="hidden" name="_captcha" value="false" />
+          <form class="form" action="/api/submissions" method="POST">
+            <input type="hidden" name="formType" value="homepage-contact" />
+            <input type="hidden" name="sourcePage" value="index.html" />
             <label for="contact-name">Name</label>
             <input id="contact-name" name="name" type="text" required />
             <label for="contact-email">Email</label>

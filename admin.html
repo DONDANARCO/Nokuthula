@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Footmed Admin</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      .admin-wrap {
+        width: min(1100px, 94%);
+        margin: 1.5rem auto 3rem;
+      }
+      .admin-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .admin-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .admin-table th,
+      .admin-table td {
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        vertical-align: top;
+        padding: 0.5rem;
+        font-size: 0.92rem;
+      }
+      .admin-status {
+        margin: 0.6rem 0 0;
+        color: var(--muted);
+      }
+      @media (max-width: 960px) {
+        .admin-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <div class="brand">Footmed Admin</div>
+        <nav>
+          <a href="./index.html">Website</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="admin-wrap">
+      <section class="card">
+        <h1>Admin Dashboard</h1>
+        <p class="section-intro">
+          Manage homepage text and view contact/query submissions from DynamoDB.
+        </p>
+      </section>
+
+      <div class="admin-grid">
+        <section class="card">
+          <h2>Site content editor</h2>
+          <form id="contentForm" class="form">
+            <label for="adminKey">Admin API key</label>
+            <input id="adminKey" type="password" placeholder="Set ADMIN_API_KEY in Vercel" required />
+
+            <label for="heroTitle">Hero title</label>
+            <textarea id="heroTitle" rows="2"></textarea>
+
+            <label for="heroLead">Hero subtitle</label>
+            <textarea id="heroLead" rows="3"></textarea>
+
+            <label for="tvFeatureText">TV feature text</label>
+            <textarea id="tvFeatureText" rows="2"></textarea>
+
+            <label for="tvFeatureLink">TV clip URL</label>
+            <input id="tvFeatureLink" type="url" />
+
+            <button class="btn btn-primary" type="submit">Save content changes</button>
+          </form>
+          <p class="admin-status" id="contentStatus"></p>
+        </section>
+
+        <section class="card">
+          <h2>Collected form details</h2>
+          <button id="refreshSubmissions" class="btn btn-secondary" type="button">Refresh submissions</button>
+          <div style="overflow:auto; margin-top:0.9rem;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Message</th>
+                  <th>Form</th>
+                </tr>
+              </thead>
+              <tbody id="submissionsBody">
+                <tr><td colspan="6">Enter admin key and click refresh.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="admin-status" id="submissionsStatus"></p>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      const fields = ["heroTitle", "heroLead", "tvFeatureText", "tvFeatureLink"];
+
+      const getKey = () => document.getElementById("adminKey").value.trim();
+      const contentStatus = document.getElementById("contentStatus");
+      const submissionsStatus = document.getElementById("submissionsStatus");
+      const submissionsBody = document.getElementById("submissionsBody");
+
+      async function loadContent() {
+        const key = getKey();
+        if (!key) return;
+
+        const response = await fetch("/api/admin/content", {
+          headers: { "x-admin-key": key },
+        });
+        if (!response.ok) {
+          contentStatus.textContent = "Could not load content.";
+          return;
+        }
+        const data = await response.json();
+        const content = data.content || {};
+        fields.forEach((f) => {
+          document.getElementById(f).value = content[f] || "";
+        });
+        contentStatus.textContent = "Loaded current content.";
+      }
+
+      async function loadSubmissions() {
+        const key = getKey();
+        if (!key) return;
+
+        submissionsStatus.textContent = "Loading submissions...";
+        const response = await fetch("/api/admin/submissions", {
+          headers: { "x-admin-key": key },
+        });
+        if (!response.ok) {
+          submissionsStatus.textContent = "Could not load submissions.";
+          return;
+        }
+
+        const data = await response.json();
+        const rows = data.submissions || [];
+
+        if (rows.length === 0) {
+          submissionsBody.innerHTML = '<tr><td colspan="6">No submissions yet.</td></tr>';
+          submissionsStatus.textContent = "No submissions found.";
+          return;
+        }
+
+        submissionsBody.innerHTML = rows
+          .map(
+            (r) => `
+            <tr>
+              <td>${(r.createdAt || "").replace("T", " ").slice(0, 16)}</td>
+              <td>${r.name || ""}</td>
+              <td>${r.email || ""}</td>
+              <td>${r.phone || ""}</td>
+              <td>${(r.message || "").slice(0, 160)}</td>
+              <td>${r.formType || ""}</td>
+            </tr>
+          `
+          )
+          .join("");
+
+        submissionsStatus.textContent = `Loaded ${rows.length} submissions.`;
+      }
+
+      document.getElementById("contentForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const key = getKey();
+        if (!key) {
+          contentStatus.textContent = "Enter admin key first.";
+          return;
+        }
+
+        const payload = {
+          content: Object.fromEntries(fields.map((f) => [f, document.getElementById(f).value.trim()])),
+        };
+
+        const response = await fetch("/api/admin/content", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-admin-key": key,
+          },
+          body: JSON.stringify(payload),
+        });
+
+        contentStatus.textContent = response.ok
+          ? "Content saved. Refresh homepage to see updates."
+          : "Failed to save content.";
+      });
+
+      document.getElementById("adminKey").addEventListener("change", async () => {
+        await loadContent();
+        await loadSubmissions();
+      });
+
+      document.getElementById("refreshSubmissions").addEventListener("click", loadSubmissions);
+    </script>
+  </body>
+</html>
