@@ -28,39 +28,25 @@
         <div class="container">
           <h1>Online booking page</h1>
           <p class="section-intro">
-            Select your preferred slot and send your booking request.
+            Select your preferred slot directly in the calendar below.
           </p>
-          <div class="split">
-            <div class="card">
-              <h2>Book your slot</h2>
-              <p>
-                All appointment types are booked through the Calendly calendar.
-              </p>
-              <a
-                class="btn btn-primary"
-                href="https://calendly.com/beatsbywebby/consultation"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Open Calendly in new tab</a
-              >
-            </div>
-            <div class="card">
-              <h2>Availability calendar</h2>
-              <div
-                class="calendly-inline-widget"
-                data-url="https://calendly.com/beatsbywebby/consultation?background_color=c0294c&text_color=ffffff&primary_color=ffffff"
-                style="min-width: 320px; height: 700px;"
-              ></div>
-              <script
-                type="text/javascript"
-                src="https://assets.calendly.com/assets/external/widget.js"
-                async
-              ></script>
-            </div>
+          <div class="card">
+            <h2>Availability calendar</h2>
+            <div
+              class="calendly-inline-widget"
+              data-url="https://calendly.com/beatsbywebby/consultation?background_color=c0294c&text_color=ffffff&primary_color=ffffff"
+              style="min-width: 320px; height: 700px;"
+            ></div>
+            <script
+              type="text/javascript"
+              src="https://assets.calendly.com/assets/external/widget.js"
+              async
+            ></script>
           </div>
         </div>
       </section>
     </main>
     <script src="./script.js" defer></script>
+    <script defer src="/_vercel/insights/script.js"></script>
   </body>
 </html>
