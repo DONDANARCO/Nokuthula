@@ -320,22 +320,32 @@ h2 {
 
 .blogs-carousel {
   display: block;
+  width: 100%;
+  overflow: hidden;
 }
 
 .blogs-viewport {
   overflow: hidden;
+  width: 100%;
 }
 
 .blogs-track {
   display: flex;
   transition: transform 0.5s ease;
+  width: 100%;
 }
 
 .blog-slide {
+  flex: 0 0 100%;
   min-width: 100%;
+  max-width: 100%;
   padding: 0.7rem;
   border-color: #d9adbb;
   box-shadow: 0 10px 20px rgba(122, 16, 47, 0.08);
+}
+
+.blog-slide:hover {
+  transform: none;
 }
 
 .blog-slide a {
@@ -355,6 +365,9 @@ h2 {
   margin: 0.7rem 0 0.2rem;
   font-weight: 700;
   color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .footer {
