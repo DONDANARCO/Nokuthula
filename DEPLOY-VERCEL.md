@@ -20,6 +20,7 @@ Create one DynamoDB table in AWS:
 In Vercel project settings, add environment variables:
 
 - `AWS_REGION` (you provided `ap-northeast-1`)
+- `AWS_ROLE_ARN` (for Vercel OIDC role-based access)
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
 - `DYNAMODB_TABLE_NAME` (you provided `NMashabpodiatrist`)
@@ -29,6 +30,10 @@ In Vercel project settings, add environment variables:
 
 The forms in `index.html` and `contact.html` already post to `/api/submissions`.
 The admin dashboard is available at `/admin.html`.
+
+Notes:
+- If `AWS_ROLE_ARN` is set, backend uses `@vercel/oidc-aws-credentials-provider`.
+- Static keys are optional when role-based auth is configured.
 
 ## 2) Deploy from Vercel dashboard (easiest)
 

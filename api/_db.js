@@ -1,5 +1,8 @@
 const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
 const { DynamoDBDocumentClient } = require("@aws-sdk/lib-dynamodb");
+const {
+  awsCredentialsProvider,
+} = require("@vercel/oidc-aws-credentials-provider");
 
 const region = process.env.AWS_REGION || "ap-northeast-1";
 const tableName =
@@ -17,6 +20,8 @@ function getDb() {
     Boolean(process.env.AWS_ACCESS_KEY_ID) &&
     Boolean(process.env.AWS_SECRET_ACCESS_KEY);
 
+  const hasRoleArn = Boolean(process.env.AWS_ROLE_ARN);
+
   const dynamo = hasStaticCreds
     ? new DynamoDBClient({
         region,
@@ -25,7 +30,15 @@ function getDb() {
           secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
         },
       })
-    : new DynamoDBClient({ region });
+    : hasRoleArn
+      ? new DynamoDBClient({
+          region,
+          credentials: awsCredentialsProvider({
+            roleArn: process.env.AWS_ROLE_ARN,
+            clientConfig: { region },
+          }),
+        })
+      : new DynamoDBClient({ region });
 
   client = DynamoDBDocumentClient.from(dynamo);
   return { ddb: client, tableName };
