@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Booking | Footmed Podiatrist Inc</title>
+    <meta
+      name="description"
+      content="Book your podiatry appointment online with Footmed Podiatrist Inc in Polokwane."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <div class="brand">Footmed Podiatrist Inc</div>
+        <nav>
+          <a href="./index.html">Home</a>
+          <a href="./contact.html">Contact</a>
+          <a href="./reviews.html">Reviews</a>
+          <a href="./gallery.html">Gallery</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section section-alt">
+        <div class="container">
+          <h1>Online booking page</h1>
+          <p class="section-intro">
+            Select your preferred slot and send your booking request.
+          </p>
+          <div class="split">
+            <div class="card">
+              <h2>Book your slot</h2>
+              <a
+                class="btn btn-primary"
+                href="https://calendar.google.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Open live booking calendar</a
+              >
+              <form class="form" action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST">
+                <input type="hidden" name="_subject" value="New Booking Request - Footmed Podiatrist Inc" />
+                <input type="hidden" name="_captcha" value="false" />
+                <label for="booking-name">Full name</label>
+                <input id="booking-name" name="name" type="text" required />
+                <label for="booking-phone">Phone number</label>
+                <input id="booking-phone" name="phone" type="tel" required />
+                <label for="booking-date">Preferred date</label>
+                <input id="booking-date" name="preferred_date" type="date" required />
+                <label for="booking-reason">Reason for visit</label>
+                <textarea id="booking-reason" name="reason" rows="4" required></textarea>
+                <button class="btn btn-primary" type="submit">Send booking request</button>
+              </form>
+            </div>
+            <div class="card">
+              <h2>Availability calendar</h2>
+              <iframe
+                class="calendar-frame"
+                title="Google Calendar Booking Availability"
+                src="https://calendar.google.com/calendar/embed?src=en.south_africa%23holiday%40group.v.calendar.google.com&ctz=Africa%2FJohannesburg"
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

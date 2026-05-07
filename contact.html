@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Form | Footmed Podiatrist Inc</title>
+    <meta
+      name="description"
+      content="Send your query to Footmed Podiatrist Inc in Polokwane through our contact form."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <div class="brand">Footmed Podiatrist Inc</div>
+        <nav>
+          <a href="./index.html">Home</a>
+          <a href="./booking.html">Booking</a>
+          <a href="./reviews.html">Reviews</a>
+          <a href="./gallery.html">Gallery</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="section">
+        <div class="container split">
+          <div class="card">
+            <h1>Contact form page</h1>
+            <p class="section-intro">
+              Complete the form below and your query will be sent to your mailbox.
+            </p>
+            <form class="form" action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST">
+              <input type="hidden" name="_subject" value="Contact Query - Footmed Podiatrist Inc" />
+              <input type="hidden" name="_captcha" value="false" />
+              <label for="contact-name">Name</label>
+              <input id="contact-name" name="name" type="text" required />
+              <label for="contact-email">Email</label>
+              <input id="contact-email" name="email" type="email" required />
+              <label for="contact-phone">Phone</label>
+              <input id="contact-phone" name="phone" type="tel" />
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" name="message" rows="5" required></textarea>
+              <button class="btn btn-primary" type="submit">Send query</button>
+            </form>
+          </div>
+          <div class="card">
+            <h2>Practice details</h2>
+            <p><strong>Practice:</strong> Footmed Podiatrist Inc</p>
+            <p><strong>Practitioner:</strong> Podiatrist N. Mashaba</p>
+            <p><strong>Phone:</strong> <a href="tel:+27759587273">075 958 7273</a></p>
+            <p><strong>Address:</strong> 103 Marshall Street, Polokwane Central, 0700</p>
+            <iframe
+              class="map-frame"
+              title="Footmed Podiatrist Inc Google Maps"
+              loading="lazy"
+              src="https://www.google.com/maps?q=103+Marshall+Street+Polokwane+Central+0700&output=embed"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

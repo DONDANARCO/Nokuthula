@@ -1,0 +1,297 @@
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --ink: #2a1020;
+  --muted: #6f4656;
+  --brand: #7a102f;
+  --brand-dark: #5f0d24;
+  --line: #e7cfd8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  background: #fff;
+  border: 2px solid var(--brand);
+  padding: 0.5rem;
+  z-index: 999;
+}
+
+a {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.container {
+  width: min(1080px, 92%);
+  margin: 0 auto;
+}
+
+.topbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 0;
+}
+
+.brand {
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+nav {
+  display: flex;
+  gap: 1.2rem;
+}
+
+nav a {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.hero {
+  padding: 4.5rem 0 3rem;
+  background: linear-gradient(135deg, #fff5f8 0%, #ffffff 100%);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 1.6rem;
+  align-items: start;
+}
+
+.eyebrow {
+  margin: 0 0 0.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  color: var(--brand);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.12;
+}
+
+.lead {
+  font-size: 1.04rem;
+  color: var(--muted);
+  max-width: 58ch;
+}
+
+.cta-row {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.3rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.68rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--brand);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--brand-dark);
+}
+
+.btn-secondary {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+}
+
+.btn-whatsapp {
+  background: #25d366;
+  color: #052311;
+}
+
+.hero-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.2rem;
+}
+
+.hero-card h3 {
+  margin-top: 0;
+}
+
+.section {
+  padding: 3rem 0;
+}
+
+.section-alt {
+  background: #fff3f6;
+}
+
+h2 {
+  margin: 0 0 0.6rem;
+  font-size: 1.7rem;
+}
+
+.section-intro {
+  margin: 0 0 1.3rem;
+  color: var(--muted);
+}
+
+.cards {
+  display: grid;
+  gap: 0.95rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 0.45rem;
+}
+
+.meta {
+  margin: 0 0 0.35rem;
+  color: var(--brand);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.booking {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.2rem;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 1rem;
+}
+
+.form {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.form label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.form input,
+.form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.65rem;
+  font: inherit;
+}
+
+.calendar-frame,
+.map-frame {
+  width: 100%;
+  min-height: 300px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.95rem;
+}
+
+.gallery img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+}
+
+.footer {
+  background: #3a0b1a;
+  color: #fceef2;
+  padding: 2.4rem 0;
+}
+
+.footer-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1.5fr 1fr 1fr;
+}
+
+.footer h3,
+.footer h4 {
+  margin-top: 0;
+  color: #fff;
+}
+
+.footer a {
+  color: #ffdbe7;
+}
+
+@media (max-width: 860px) {
+  .hero-grid,
+  .footer-grid,
+  .split {
+    grid-template-columns: 1fr;
+  }
+
+  .booking {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav {
+    display: none;
+  }
+}
