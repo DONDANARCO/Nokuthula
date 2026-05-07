@@ -15,6 +15,9 @@
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
       }
+      .admin-hidden {
+        display: none;
+      }
       .admin-table {
         width: 100%;
         border-collapse: collapse;
@@ -49,20 +52,25 @@
     </header>
 
     <main class="admin-wrap">
-      <section class="card">
+      <section class="card" id="loginCard">
         <h1>Admin Dashboard</h1>
         <p class="section-intro">
-          Manage homepage text and view contact/query submissions from DynamoDB.
+          Sign in to manage homepage text and view contact/query submissions.
         </p>
+        <form id="loginForm" class="form">
+          <label for="adminUser">Username</label>
+          <input id="adminUser" type="text" required />
+          <label for="adminPass">Password</label>
+          <input id="adminPass" type="password" required />
+          <button class="btn btn-primary" type="submit">Sign in</button>
+        </form>
+        <p class="admin-status" id="loginStatus"></p>
       </section>
 
-      <div class="admin-grid">
+      <div class="admin-grid admin-hidden" id="adminPanel">
         <section class="card">
           <h2>Site content editor</h2>
           <form id="contentForm" class="form">
-            <label for="adminKey">Admin API key</label>
-            <input id="adminKey" type="password" placeholder="Set ADMIN_API_KEY in Vercel" required />
-
             <label for="heroTitle">Hero title</label>
             <textarea id="heroTitle" rows="2"></textarea>
 
@@ -96,7 +104,7 @@
                 </tr>
               </thead>
               <tbody id="submissionsBody">
-                <tr><td colspan="6">Enter admin key and click refresh.</td></tr>
+                <tr><td colspan="6">Sign in and click refresh.</td></tr>
               </tbody>
             </table>
           </div>
@@ -107,18 +115,22 @@
 
     <script>
       const fields = ["heroTitle", "heroLead", "tvFeatureText", "tvFeatureLink"];
-
-      const getKey = () => document.getElementById("adminKey").value.trim();
+      const loginStatus = document.getElementById("loginStatus");
+      const loginCard = document.getElementById("loginCard");
+      const adminPanel = document.getElementById("adminPanel");
       const contentStatus = document.getElementById("contentStatus");
       const submissionsStatus = document.getElementById("submissionsStatus");
       const submissionsBody = document.getElementById("submissionsBody");
+      let auth = { user: "", pass: "" };
+
+      const authHeaders = () => ({
+        "x-admin-user": auth.user,
+        "x-admin-pass": auth.pass,
+      });
 
       async function loadContent() {
-        const key = getKey();
-        if (!key) return;
-
         const response = await fetch("/api/admin/content", {
-          headers: { "x-admin-key": key },
+          headers: authHeaders(),
         });
         if (!response.ok) {
           contentStatus.textContent = "Could not load content.";
@@ -133,12 +145,9 @@
       }
 
       async function loadSubmissions() {
-        const key = getKey();
-        if (!key) return;
-
         submissionsStatus.textContent = "Loading submissions...";
         const response = await fetch("/api/admin/submissions", {
-          headers: { "x-admin-key": key },
+          headers: authHeaders(),
         });
         if (!response.ok) {
           submissionsStatus.textContent = "Could not load submissions.";
@@ -174,11 +183,6 @@
 
       document.getElementById("contentForm").addEventListener("submit", async (e) => {
         e.preventDefault();
-        const key = getKey();
-        if (!key) {
-          contentStatus.textContent = "Enter admin key first.";
-          return;
-        }
 
         const payload = {
           content: Object.fromEntries(fields.map((f) => [f, document.getElementById(f).value.trim()])),
@@ -188,7 +192,7 @@
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "x-admin-key": key,
+            ...authHeaders(),
           },
           body: JSON.stringify(payload),
         });
@@ -198,7 +202,23 @@
           : "Failed to save content.";
       });
 
-      document.getElementById("adminKey").addEventListener("change", async () => {
+      document.getElementById("loginForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        auth.user = document.getElementById("adminUser").value.trim();
+        auth.pass = document.getElementById("adminPass").value;
+
+        const response = await fetch("/api/admin/content", {
+          headers: authHeaders(),
+        });
+
+        if (!response.ok) {
+          loginStatus.textContent = "Invalid username or password.";
+          return;
+        }
+
+        loginStatus.textContent = "Signed in.";
+        loginCard.classList.add("admin-hidden");
+        adminPanel.classList.remove("admin-hidden");
         await loadContent();
         await loadSubmissions();
       });

@@ -45,17 +45,13 @@ function getDb() {
 }
 
 function requireAdmin(req, res) {
-  const token = process.env.ADMIN_API_KEY;
-  if (!token) {
-    res.status(500).json({ error: "ADMIN_API_KEY is not configured" });
-    return false;
-  }
+  const adminUser = process.env.ADMIN_USERNAME || "NMPodiatrist";
+  const adminPass = process.env.ADMIN_PASSWORD || "P0diatrist";
 
-  const headerToken =
-    req.headers["x-admin-key"] ||
-    (req.headers.authorization || "").replace(/^Bearer\s+/i, "");
+  const headerUser = req.headers["x-admin-user"] || "";
+  const headerPass = req.headers["x-admin-pass"] || "";
 
-  if (headerToken !== token) {
+  if (headerUser !== adminUser || headerPass !== adminPass) {
     res.status(401).json({ error: "Unauthorized" });
     return false;
   }

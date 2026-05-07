@@ -26,7 +26,8 @@ In Vercel project settings, add environment variables:
 - `DYNAMODB_TABLE_NAME` (you provided `NMashabpodiatrist`)
 - `DYNAMODB_TABLE_PARTITION_KEY` (`PK`)
 - `DYNAMODB_TABLE_SORT_KEY` (`SK`)
-- `ADMIN_API_KEY` (choose a strong secret for `/admin.html`)
+- `ADMIN_USERNAME` (currently defaults to `NMPodiatrist`)
+- `ADMIN_PASSWORD` (currently defaults to `P0diatrist`)
 
 The forms in `index.html` and `contact.html` already post to `/api/submissions`.
 The admin dashboard is available at `/admin.html`.
@@ -34,6 +35,7 @@ The admin dashboard is available at `/admin.html`.
 Notes:
 - If `AWS_ROLE_ARN` is set, backend uses `@vercel/oidc-aws-credentials-provider`.
 - Static keys are optional when role-based auth is configured.
+- For production, set your own strong `ADMIN_USERNAME` and `ADMIN_PASSWORD`.
 
 ## 2) Deploy from Vercel dashboard (easiest)
 
