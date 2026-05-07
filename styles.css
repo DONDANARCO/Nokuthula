@@ -172,6 +172,11 @@ h1 {
   padding: 1.2rem;
 }
 
+.hero-card-highlight {
+  border: 1px solid #d8a7b7;
+  box-shadow: 0 12px 26px rgba(122, 16, 47, 0.08);
+}
+
 .hero-card h3 {
   margin-top: 0;
 }
@@ -198,6 +203,10 @@ h2 {
   display: grid;
   gap: 0.95rem;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+#trust .cards {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .card {
@@ -292,6 +301,23 @@ h2 {
   box-shadow: 0 10px 22px rgba(122, 16, 47, 0.12);
 }
 
+.reviews-carousel {
+  display: block;
+}
+
+.reviews-viewport {
+  overflow: hidden;
+}
+
+.reviews-track {
+  display: flex;
+  transition: transform 0.45s ease;
+}
+
+.review-slide {
+  min-width: 100%;
+}
+
 .footer {
   background: #3a0b1a;
   color: #fceef2;
@@ -350,6 +376,7 @@ h2 {
   .split {
     grid-template-columns: 1fr;
   }
+
 
   .booking {
     flex-direction: column;
