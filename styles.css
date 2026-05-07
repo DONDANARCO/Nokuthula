@@ -318,6 +318,37 @@ h2 {
   min-width: 100%;
 }
 
+.blogs-carousel {
+  display: block;
+}
+
+.blogs-viewport {
+  overflow: hidden;
+}
+
+.blogs-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.blog-slide {
+  min-width: 100%;
+  padding: 1.2rem;
+  border-color: #d9adbb;
+  box-shadow: 0 10px 20px rgba(122, 16, 47, 0.08);
+}
+
+.blog-slide h3 {
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  margin-bottom: 0.7rem;
+}
+
+.blog-link {
+  display: inline-block;
+  margin-top: 0.55rem;
+  font-weight: 600;
+}
+
 .footer {
   background: #3a0b1a;
   color: #fceef2;

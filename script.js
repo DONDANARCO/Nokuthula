@@ -28,28 +28,34 @@ if ("IntersectionObserver" in window) {
   });
 }
 
-const carousel = document.querySelector("[data-carousel]");
-if (carousel) {
+const autoCarousels = document.querySelectorAll("[data-auto-carousel]");
+autoCarousels.forEach((carousel) => {
   const track = carousel.querySelector("[data-carousel-track]");
+  if (!track) return;
+
   const slides = Array.from(track.children);
+  if (slides.length <= 1) return;
+
+  const intervalMs = Number(carousel.getAttribute("data-interval")) || 5000;
   let index = 0;
 
   const renderCarousel = () => {
     track.style.transform = `translateX(-${index * 100}%)`;
   };
 
-  let autoplay = setInterval(() => {
-    index = (index + 1) % slides.length;
-    renderCarousel();
-  }, 5000);
+  const startAutoplay = () =>
+    setInterval(() => {
+      index = (index + 1) % slides.length;
+      renderCarousel();
+    }, intervalMs);
+
+  let autoplay = startAutoplay();
 
   carousel.addEventListener("mouseenter", () => clearInterval(autoplay));
   carousel.addEventListener("mouseleave", () => {
-    autoplay = setInterval(() => {
-      index = (index + 1) % slides.length;
-      renderCarousel();
-    }, 5000);
+    clearInterval(autoplay);
+    autoplay = startAutoplay();
   });
 
   renderCarousel();
-}
+});
