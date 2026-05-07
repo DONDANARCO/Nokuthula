@@ -333,20 +333,28 @@ h2 {
 
 .blog-slide {
   min-width: 100%;
-  padding: 1.2rem;
+  padding: 0.7rem;
   border-color: #d9adbb;
   box-shadow: 0 10px 20px rgba(122, 16, 47, 0.08);
 }
 
-.blog-slide h3 {
-  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
-  margin-bottom: 0.7rem;
+.blog-slide a {
+  display: block;
+  color: inherit;
 }
 
-.blog-link {
-  display: inline-block;
-  margin-top: 0.55rem;
-  font-weight: 600;
+.blog-thumb {
+  width: 100%;
+  height: clamp(220px, 38vw, 360px);
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+}
+
+.blog-site {
+  margin: 0.7rem 0 0.2rem;
+  font-weight: 700;
+  color: var(--ink);
 }
 
 .footer {
