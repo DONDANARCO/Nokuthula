@@ -228,6 +228,15 @@ h2 {
   margin-bottom: 0.45rem;
 }
 
+.service-thumb {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  margin: 0.4rem 0 0.7rem;
+}
+
 .meta {
   margin: 0 0 0.35rem;
   color: var(--brand);
