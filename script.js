@@ -50,6 +50,27 @@ async function hydrateEditableContent() {
 
 hydrateEditableContent();
 
+function showFormConfirmation() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("submitted") !== "1") return;
+
+  const forms = document.querySelectorAll('form[action="/api/submissions"]');
+  forms.forEach((form) => {
+    const msg = document.createElement("p");
+    msg.className = "form-confirmation";
+    msg.textContent =
+      "Thank you. Your message has been received. We will contact you soon.";
+    form.parentElement?.insertBefore(msg, form);
+  });
+
+  params.delete("submitted");
+  const query = params.toString();
+  const nextUrl = `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`;
+  window.history.replaceState({}, "", nextUrl);
+}
+
+showFormConfirmation();
+
 const updateTopbar = () => {
   if (!topbar) return;
   topbar.classList.toggle("is-scrolled", window.scrollY > 12);
