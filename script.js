@@ -20,6 +20,22 @@ async function hydrateEditableContent() {
         el.textContent = value;
       }
     });
+
+    const pageName = (() => {
+      const path = window.location.pathname;
+      if (path === "/" || path === "") return "index.html";
+      return path.split("/").pop() || "index.html";
+    })();
+
+    const selectorOverrides =
+      (content.selectorOverrides && content.selectorOverrides[pageName]) || {};
+
+    Object.entries(selectorOverrides).forEach(([selector, value]) => {
+      if (typeof value !== "string") return;
+      const el = document.querySelector(selector);
+      if (!el) return;
+      el.textContent = value;
+    });
   } catch {
     // Keep default page copy when API is unavailable.
   }

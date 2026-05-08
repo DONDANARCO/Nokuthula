@@ -34,6 +34,28 @@
         margin: 0.6rem 0 0;
         color: var(--muted);
       }
+      .text-editor-list {
+        max-height: 420px;
+        overflow: auto;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 0.7rem;
+        background: #fff;
+      }
+      .text-editor-item {
+        padding: 0.55rem 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .text-editor-item:last-child {
+        border-bottom: 0;
+      }
+      .selector-label {
+        display: block;
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin-bottom: 0.3rem;
+        word-break: break-all;
+      }
       @media (max-width: 960px) {
         .admin-grid {
           grid-template-columns: 1fr;
@@ -89,6 +111,26 @@
         </section>
 
         <section class="card">
+          <h2>Full site text editor</h2>
+          <form id="textOverridesForm" class="form">
+            <label for="pageSelect">Page</label>
+            <select id="pageSelect">
+              <option value="index.html">index.html (Home)</option>
+              <option value="booking.html">booking.html</option>
+              <option value="contact.html">contact.html</option>
+              <option value="reviews.html">reviews.html</option>
+              <option value="gallery.html">gallery.html</option>
+            </select>
+            <button id="loadPageText" class="btn btn-secondary" type="button">Load page text</button>
+            <div id="textEditorList" class="text-editor-list">
+              Load a page to edit all written portions.
+            </div>
+            <button class="btn btn-primary" type="submit">Save page text overrides</button>
+          </form>
+          <p class="admin-status" id="textOverrideStatus"></p>
+        </section>
+
+        <section class="card">
           <h2>Collected form details</h2>
           <button id="refreshSubmissions" class="btn btn-secondary" type="button">Refresh submissions</button>
           <div style="overflow:auto; margin-top:0.9rem;">
@@ -121,7 +163,12 @@
       const contentStatus = document.getElementById("contentStatus");
       const submissionsStatus = document.getElementById("submissionsStatus");
       const submissionsBody = document.getElementById("submissionsBody");
+      const textEditorList = document.getElementById("textEditorList");
+      const textOverrideStatus = document.getElementById("textOverrideStatus");
+      const pageSelect = document.getElementById("pageSelect");
       let auth = { user: "", pass: "" };
+      let adminContent = {};
+      let currentPageEntries = [];
 
       const authHeaders = () => ({
         "x-admin-user": auth.user,
@@ -138,10 +185,88 @@
         }
         const data = await response.json();
         const content = data.content || {};
+        adminContent = content;
         fields.forEach((f) => {
           document.getElementById(f).value = content[f] || "";
         });
         contentStatus.textContent = "Loaded current content.";
+      }
+
+      function getElementSelector(el) {
+        if (el.id) return `#${el.id}`;
+        const parts = [];
+        let node = el;
+        while (node && node.nodeType === 1 && node.tagName.toLowerCase() !== "html") {
+          const tag = node.tagName.toLowerCase();
+          const parent = node.parentElement;
+          if (!parent) break;
+          const siblings = Array.from(parent.children).filter(
+            (child) => child.tagName === node.tagName
+          );
+          const index = siblings.indexOf(node) + 1;
+          parts.unshift(`${tag}:nth-of-type(${index})`);
+          if (parent.id) {
+            parts.unshift(`#${parent.id}`);
+            break;
+          }
+          node = parent;
+        }
+        return parts.join(" > ");
+      }
+
+      async function loadPageTextEntries() {
+        const page = pageSelect.value;
+        textOverrideStatus.textContent = "Loading page text...";
+        const response = await fetch(`/${page}`);
+        if (!response.ok) {
+          textOverrideStatus.textContent = "Could not load selected page.";
+          return;
+        }
+
+        const html = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+        const candidates = doc.querySelectorAll(
+          "main h1, main h2, main h3, main h4, main p, main a, main button, footer h3, footer h4, footer p, footer a, label"
+        );
+
+        const existingOverrides =
+          (adminContent.selectorOverrides && adminContent.selectorOverrides[page]) || {};
+
+        const seen = new Set();
+        currentPageEntries = [];
+
+        candidates.forEach((el) => {
+          const text = (el.textContent || "").trim();
+          if (!text) return;
+          const selector = getElementSelector(el);
+          if (!selector || seen.has(selector)) return;
+          seen.add(selector);
+          currentPageEntries.push({
+            selector,
+            original: text,
+            value: existingOverrides[selector] || text,
+          });
+        });
+
+        if (currentPageEntries.length === 0) {
+          textEditorList.innerHTML = "No editable text found.";
+          textOverrideStatus.textContent = "No editable text found.";
+          return;
+        }
+
+        textEditorList.innerHTML = currentPageEntries
+          .map(
+            (entry, index) => `
+              <div class="text-editor-item">
+                <span class="selector-label">${entry.selector}</span>
+                <textarea data-entry-index="${index}" rows="2">${entry.value.replaceAll("<", "&lt;")}</textarea>
+              </div>
+            `
+          )
+          .join("");
+
+        textOverrideStatus.textContent = `Loaded ${currentPageEntries.length} text entries from ${page}.`;
       }
 
       async function loadSubmissions() {
@@ -224,6 +349,45 @@
       });
 
       document.getElementById("refreshSubmissions").addEventListener("click", loadSubmissions);
+
+      document.getElementById("loadPageText").addEventListener("click", loadPageTextEntries);
+
+      document.getElementById("textOverridesForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const page = pageSelect.value;
+        const textareas = textEditorList.querySelectorAll("textarea[data-entry-index]");
+        if (!textareas.length) {
+          textOverrideStatus.textContent = "Load page text first.";
+          return;
+        }
+
+        const overrides = {};
+        textareas.forEach((ta) => {
+          const idx = Number(ta.getAttribute("data-entry-index"));
+          const entry = currentPageEntries[idx];
+          if (!entry) return;
+          const newValue = ta.value.trim();
+          if (newValue && newValue !== entry.original) {
+            overrides[entry.selector] = newValue;
+          }
+        });
+
+        adminContent.selectorOverrides = adminContent.selectorOverrides || {};
+        adminContent.selectorOverrides[page] = overrides;
+
+        const response = await fetch("/api/admin/content", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            ...authHeaders(),
+          },
+          body: JSON.stringify({ content: adminContent }),
+        });
+
+        textOverrideStatus.textContent = response.ok
+          ? `Saved text overrides for ${page}.`
+          : "Failed to save page text overrides.";
+      });
     </script>
   </body>
 </html>
