@@ -1,0 +1,11 @@
+name=Footmed Podiatrist Inc Website
+type=static-site
+entry=index.html
+admin=admin.html
+booking=booking.html
+contact=contact.html
+reviews=reviews.html
+gallery=gallery.html
+api_forms=/api/submissions
+api_admin_content=/api/admin/content
+api_admin_submissions=/api/admin/submissions
