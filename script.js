@@ -12,12 +12,19 @@ async function hydrateEditableContent() {
     Object.entries(content).forEach(([key, value]) => {
       if (typeof value !== "string") return;
       const el = document.querySelector(`[data-edit-key="${key}"]`);
-      if (!el) return;
+      if (el) {
+        if (el.tagName === "A" && key.toLowerCase().includes("link")) {
+          el.setAttribute("href", value.trim());
+        } else {
+          el.textContent = value;
+        }
+      }
 
-      if (el.tagName === "A" && key.toLowerCase().includes("link")) {
-        el.setAttribute("href", value.trim());
-      } else {
-        el.textContent = value;
+      const srcEl = document.querySelector(`[data-edit-key-src="${key}"]`);
+      if (srcEl && value.trim()) {
+        srcEl.setAttribute("src", value.trim());
+        const video = srcEl.closest("video");
+        if (video) video.load();
       }
     });
 

@@ -105,6 +105,9 @@
             <label for="tvFeatureLink">TV clip URL</label>
             <input id="tvFeatureLink" type="url" />
 
+            <label for="tvClipUrl">TV clip file URL (mp4)</label>
+            <input id="tvClipUrl" type="url" />
+
             <button class="btn btn-primary" type="submit">Save content changes</button>
           </form>
           <p class="admin-status" id="contentStatus"></p>
@@ -156,7 +159,7 @@
     </main>
 
     <script>
-      const fields = ["heroTitle", "heroLead", "tvFeatureText", "tvFeatureLink"];
+      const fields = ["heroTitle", "heroLead", "tvFeatureText", "tvFeatureLink", "tvClipUrl"];
       const loginStatus = document.getElementById("loginStatus");
       const loginCard = document.getElementById("loginCard");
       const adminPanel = document.getElementById("adminPanel");
