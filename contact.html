@@ -8,84 +8,179 @@
       name="description"
       content="Send your query to Foot Med Podiatrist Inc in Polokwane through our contact form."
     />
+    <meta name="theme-color" content="#5f0d24" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
     <div class="top-info-bar">
       <div class="container top-info-inner">
-        <span class="top-info-item"><strong>Emergency:</strong> 075 958 7273</span>
-        <span class="top-info-item"><strong>Hours:</strong> Mon-Fri 08:00-17:00</span>
-        <span class="top-info-item"><strong>Location:</strong> Polokwane Central</span>
+        <span class="top-info-item">
+          <span class="icon" aria-hidden="true">&#128222;</span>
+          <span>
+            <span class="label">Emergency</span>
+            <span class="value">075 958 7273</span>
+          </span>
+        </span>
+        <span class="top-info-item">
+          <span class="icon" aria-hidden="true">&#128340;</span>
+          <span>
+            <span class="label">Work hours</span>
+            <span class="value">Mon-Fri 08:00 - 17:00</span>
+          </span>
+        </span>
+        <span class="top-info-item">
+          <span class="icon" aria-hidden="true">&#128205;</span>
+          <span>
+            <span class="label">Location</span>
+            <span class="value">Polokwane Central</span>
+          </span>
+        </span>
       </div>
     </div>
+
     <header class="topbar">
       <div class="container nav">
         <div class="brand brand-with-logo">
           <img class="brand-logo" src="./images/business-logo.png" alt="Foot Med Podiatrist Inc logo" onerror="this.style.display='none'" />
           <span>Foot Med Podiatrist Inc</span>
         </div>
-        <nav>
+        <nav class="primary-nav">
           <a href="./index.html">Home</a>
-          <a href="./booking.html">Booking</a>
-          <a href="./reviews.html">Reviews</a>
+          <a href="./booking.html">Book</a>
           <a href="./gallery.html">Gallery</a>
+          <a href="./reviews.html">Reviews</a>
+          <a href="./contact.html" class="active">Contact</a>
         </nav>
+        <div class="nav-actions">
+          <a class="btn-appt" href="./booking.html">Appointment</a>
+        </div>
       </div>
     </header>
-    <main>
+
+    <main id="main-content">
       <section class="page-hero">
         <div class="container">
-          <p class="crumb">Home / Contact</p>
-          <h1 class="page-title">Contact us</h1>
-          <div class="bar"></div>
+          <p class="crumb"><a href="./index.html">Home</a> / Contact</p>
+          <h1 class="page-title">Contact Us</h1>
         </div>
       </section>
+
       <section class="section">
-        <div class="container split">
-          <div class="card">
+        <div class="container">
+          <div class="section-header">
             <span class="section-label">Send a query</span>
-            <h2>Contact form page</h2>
+            <h2 class="section-title">Get in touch</h2>
             <p class="section-intro">
-              Complete the form below and your query will be sent to your mailbox.
+              Complete the form and your query will be sent to our mailbox. We respond within 24 hours.
             </p>
-            <form class="form" action="/api/submissions" method="POST">
-              <input type="hidden" name="formType" value="contact-page" />
-              <input type="hidden" name="sourcePage" value="contact.html" />
-              <input
-                type="text"
-                name="company"
-                tabindex="-1"
-                autocomplete="off"
-                aria-hidden="true"
-                style="position:absolute;left:-9999px;opacity:0;pointer-events:none;"
-              />
-              <label for="contact-name">Name</label>
-              <input id="contact-name" name="name" type="text" required />
-              <label for="contact-email">Email</label>
-              <input id="contact-email" name="email" type="email" required />
-              <label for="contact-phone">Phone</label>
-              <input id="contact-phone" name="phone" type="tel" required />
-              <label for="contact-message">Message</label>
-              <textarea id="contact-message" name="message" rows="5" required></textarea>
-              <button class="btn btn-primary" type="submit">Send query</button>
-            </form>
           </div>
-          <div class="card">
-            <h2>Practice details</h2>
-            <p><strong>Practice:</strong> Foot Med Podiatrist Inc</p>
-            <p><strong>Practitioner:</strong> Podiatrist N. Mashaba</p>
-            <p><strong>Phone:</strong> <a href="tel:+27759587273">075 958 7273</a></p>
-            <p><strong>Address:</strong> 103 Marshall Street, Polokwane Central, 0700</p>
+
+          <div class="split">
+            <div class="card">
+              <h3 style="margin-bottom: 1rem;">Send us a message</h3>
+              <form class="form" action="/api/submissions" method="POST">
+                <input type="hidden" name="formType" value="contact-page" />
+                <input type="hidden" name="sourcePage" value="contact.html" />
+                <input
+                  type="text"
+                  name="company"
+                  tabindex="-1"
+                  autocomplete="off"
+                  aria-hidden="true"
+                  style="position:absolute;left:-9999px;opacity:0;pointer-events:none;"
+                />
+                <label for="contact-name">Name</label>
+                <input id="contact-name" name="name" type="text" placeholder="Your full name" required />
+                <label for="contact-email">Email</label>
+                <input id="contact-email" name="email" type="email" placeholder="you@example.com" required />
+                <label for="contact-phone">Phone</label>
+                <input id="contact-phone" name="phone" type="tel" placeholder="075 000 0000" required />
+                <label for="contact-message">Message</label>
+                <textarea id="contact-message" name="message" rows="5" placeholder="How can we help you?" required></textarea>
+                <button type="submit">Send query</button>
+              </form>
+            </div>
+
+            <div class="schedule-panel">
+              <h3 class="schedule-panel__title">Practice details</h3>
+              <div class="schedule-row"><span class="schedule-day">Practice</span><span class="schedule-time">Foot Med</span></div>
+              <div class="schedule-row"><span class="schedule-day">Practitioner</span><span class="schedule-time">N. Mashaba</span></div>
+              <div class="schedule-row"><span class="schedule-day">HPCSA</span><span class="schedule-time">CH0007730</span></div>
+              <div class="schedule-row"><span class="schedule-day">Practice no.</span><span class="schedule-time">1331833</span></div>
+              <div class="schedule-row"><span class="schedule-day">Mon - Fri</span><span class="schedule-time">08:00 - 17:00</span></div>
+              <div class="schedule-row"><span class="schedule-day">Sat - Sun</span><span class="schedule-time schedule-time--closed">Emergency only</span></div>
+              <div class="schedule-emergency">
+                <span class="icon" aria-hidden="true">&#128222;</span>
+                <div>
+                  <div style="font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;opacity:.7;">Emergency</div>
+                  <a href="tel:+27759587273" style="color:#fff;font-size:1.05rem;">075 958 7273</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top: 2rem;">
+            <h3>Find us in Polokwane</h3>
+            <p style="color: var(--color-dark-gray); margin: 0.5rem 0 1rem;">
+              103 Marshall Street, Polokwane Central, 0700
+            </p>
             <iframe
               class="map-frame"
               title="Foot Med Podiatrist Inc Google Maps"
               loading="lazy"
               src="https://www.google.com/maps?q=103+Marshall+Street+Polokwane+Central+0700&output=embed"
+              style="min-height: 360px;"
             ></iframe>
           </div>
         </div>
       </section>
     </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <p class="footer__brand">Foot Med <span>Podiatrist</span></p>
+            <p class="footer__tagline">
+              Leading the Way in Foot Care Excellence in Polokwane and across Limpopo.
+            </p>
+          </div>
+          <div>
+            <h4>Important Links</h4>
+            <p>
+              <a href="./index.html">Home</a><br />
+              <a href="./booking.html">Book an appointment</a><br />
+              <a href="./gallery.html">Practice gallery</a><br />
+              <a href="./reviews.html">Patient reviews</a>
+            </p>
+          </div>
+          <div>
+            <h4>Practice details</h4>
+            <p>
+              Foot Med Podiatrist Inc<br />
+              Podiatrist N. Mashaba<br />
+              HPCSA: CH0007730<br />
+              <a href="tel:+27759587273">075 958 7273</a>
+            </p>
+          </div>
+          <div>
+            <h4>Find us in Polokwane</h4>
+            <p>103 Marshall Street, Polokwane Central, 0700</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-copy">&copy; 2026 Foot Med Podiatrist Inc. All rights reserved.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/27759587273" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">W</a>
+            <a href="tel:+27759587273" aria-label="Call">&#128222;</a>
+            <a href="./contact.html" aria-label="Email">&#9993;</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
     <script src="./script.js" defer></script>
     <script defer src="/_vercel/insights/script.js"></script>
   </body>
