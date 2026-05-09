@@ -1,4 +1,4 @@
-name=Footmed Podiatrist Inc Website
+name=Foot Med Podiatrist Inc Website
 type=static-site
 entry=index.html
 admin=admin.html
