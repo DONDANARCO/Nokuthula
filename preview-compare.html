@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design Compare | Foot Med Podiatrist Inc</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Lato:wght@400;600;700&family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f5f7fb;
+        --text: #10223d;
+        --line: #dbe3ef;
+        --med-navy: #1b2b5e;
+        --med-blue: #2196c9;
+        --med-light: #eef1f6;
+        --med-white: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", system-ui, -apple-system, Segoe UI, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+      }
+
+      .top {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+        padding: 0.9rem 1rem;
+      }
+
+      .top h1 {
+        margin: 0;
+        font-size: 1.05rem;
+      }
+
+      .top p {
+        margin: 0.25rem 0 0;
+        color: #4f5f79;
+        font-size: 0.9rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.9rem;
+        padding: 0.9rem;
+        min-height: calc(100vh - 76px);
+      }
+
+      .panel {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: 70vh;
+      }
+
+      .panel-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 0.9rem;
+        border-bottom: 1px solid var(--line);
+        background: #fafcff;
+      }
+
+      .panel-title {
+        font-weight: 700;
+        font-size: 0.95rem;
+      }
+
+      .panel-head a {
+        font-size: 0.82rem;
+        color: #375f9f;
+        text-decoration: none;
+      }
+
+      iframe {
+        border: 0;
+        width: 100%;
+        height: 100%;
+        min-height: 70vh;
+        background: #fff;
+      }
+
+      .meddical-preview {
+        height: 100%;
+        overflow: auto;
+        background: var(--med-white);
+      }
+
+      .med-topbar {
+        padding: 0.5rem 1rem;
+        background: var(--med-white);
+        border-bottom: 1px solid var(--med-light);
+        font-size: 0.8rem;
+        color: #4a5568;
+      }
+
+      .med-navbar {
+        background: var(--med-navy);
+        color: #fff;
+        padding: 0.9rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .med-logo {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+
+      .med-logo span {
+        color: var(--med-blue);
+      }
+
+      .med-hero {
+        background: linear-gradient(90deg, #1b2b5e 0%, #264083 100%);
+        color: #fff;
+        padding: 2rem 1rem;
+      }
+
+      .med-hero p {
+        margin: 0;
+        font-family: "Lato", sans-serif;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #89d2ee;
+        font-size: 0.72rem;
+      }
+
+      .med-hero h2 {
+        margin: 0.65rem 0 0;
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 1.75rem;
+      }
+
+      .med-wrap {
+        padding: 1rem;
+      }
+
+      .med-section-label {
+        margin: 0 0 0.4rem;
+        color: var(--med-blue);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-size: 0.68rem;
+        font-family: "Lato", sans-serif;
+        font-weight: 700;
+      }
+
+      .med-section-title {
+        margin: 0;
+        font-family: "Playfair Display", Georgia, serif;
+        color: var(--med-navy);
+      }
+
+      .med-cards {
+        margin-top: 1rem;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.8rem;
+      }
+
+      .med-card {
+        border: 1px solid var(--med-light);
+        border-radius: 8px;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .med-thumb {
+        height: 90px;
+        background: linear-gradient(135deg, #89d2ee 0%, #1b2b5e 100%);
+      }
+
+      .med-body {
+        padding: 0.75rem;
+      }
+
+      .med-body h3 {
+        margin: 0;
+        color: var(--med-blue);
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 1rem;
+      }
+
+      .med-body p {
+        margin: 0.45rem 0 0;
+        font-size: 0.82rem;
+        color: #4a5568;
+      }
+
+      .med-footer {
+        margin-top: 1rem;
+        background: var(--med-navy);
+        color: #b7c2d8;
+        padding: 1rem;
+        font-size: 0.78rem;
+      }
+
+      @media (max-width: 1000px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <h1>Side-by-side design preview</h1>
+      <p>Left: your live site. Right: exact downloaded Meddical component reference.</p>
+    </header>
+
+    <main class="grid">
+      <section class="panel">
+        <div class="panel-head">
+          <span class="panel-title">Current Foot Med site</span>
+          <a href="./index.html" target="_blank" rel="noopener noreferrer">Open full page</a>
+        </div>
+        <iframe title="Current site preview" src="./index.html"></iframe>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <span class="panel-title">Meddical style reference (exact file)</span>
+          <a href="file:///C:/Users/User/Downloads/files/components.html" target="_blank" rel="noopener noreferrer">Open source file</a>
+        </div>
+        <iframe
+          title="Meddical components reference"
+          src="file:///C:/Users/User/Downloads/files/components.html"
+        ></iframe>
+      </section>
+    </main>
+  </body>
+</html>
