@@ -23,6 +23,7 @@
     <meta name="theme-color" content="#5f0d24" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="./styles.css" />
     <script type="application/ld+json">
       {
@@ -39,14 +40,7 @@
           "postalCode": "0700",
           "addressCountry": "ZA"
         },
-        "areaServed": [
-          "Polokwane Central",
-          "Bendor",
-          "Fauna Park",
-          "Flora Park",
-          "Seshego",
-          "Limpopo"
-        ],
+        "areaServed": ["Polokwane Central", "Bendor", "Fauna Park", "Flora Park", "Seshego", "Limpopo"],
         "openingHours": "Mo-Fr 08:00-17:00",
         "url": "https://example.com"
       }
@@ -58,21 +52,21 @@
     <div class="top-info-bar">
       <div class="container top-info-inner">
         <span class="top-info-item">
-          <span class="icon" aria-hidden="true">&#128222;</span>
+          <span class="icon" aria-hidden="true"><i class="fa-solid fa-phone"></i></span>
           <span>
             <span class="label">Emergency</span>
             <span class="value">075 958 7273</span>
           </span>
         </span>
         <span class="top-info-item">
-          <span class="icon" aria-hidden="true">&#128340;</span>
+          <span class="icon" aria-hidden="true"><i class="fa-regular fa-clock"></i></span>
           <span>
-            <span class="label">Work hours</span>
+            <span class="label">Work Hours</span>
             <span class="value">Mon-Fri 08:00 - 17:00</span>
           </span>
         </span>
         <span class="top-info-item">
-          <span class="icon" aria-hidden="true">&#128205;</span>
+          <span class="icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
           <span>
             <span class="label">Location</span>
             <span class="value">Polokwane Central</span>
@@ -95,12 +89,14 @@
           <a href="./contact.html">Contact</a>
         </nav>
         <div class="nav-actions">
+          <i class="fa-solid fa-magnifying-glass nav-search" aria-hidden="true"></i>
           <a class="btn-appt" href="./booking.html">Appointment</a>
         </div>
       </div>
     </header>
 
     <main id="main-content">
+      <!-- HERO -->
       <section class="hero">
         <div class="container hero-grid">
           <div>
@@ -109,20 +105,81 @@
               Leading the Way in <span class="accent">Foot Care</span> Excellence
             </h1>
             <p class="lead" data-edit-key="heroLead">
-              Professional podiatry care in Polokwane Central for heel pain,
-              plantar fasciitis, diabetic foot care, sports injuries, ingrown
-              toenails, and custom orthotics.
+              Professional podiatry care in Polokwane Central for heel pain, plantar fasciitis,
+              diabetic foot care, sports injuries, ingrown toenails, and custom orthotics.
             </p>
             <div class="cta-row">
-              <a class="btn btn-primary" href="https://calendly.com/npodiatrist/30min?hide_gdpr_banner=1&primary_color=c01111" target="_blank" rel="noopener noreferrer">Book on Calendly</a>
-              <a class="btn btn-secondary" href="tel:+27759587273">Call 075 958 7273</a>
-              <a class="btn btn-whatsapp" href="https://wa.me/27759587273" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+              <a class="btn btn-primary" href="./booking.html">Book Appointment</a>
+              <a class="btn btn-secondary" href="tel:+27759587273"><i class="fa-solid fa-phone"></i>&nbsp;075 958 7273</a>
+              <a class="btn btn-whatsapp" href="https://wa.me/27759587273" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i>&nbsp;WhatsApp</a>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="services" class="section">
+      <!-- QUICK ACTIONS -->
+      <section style="padding-bottom: var(--space-12);">
+        <div class="container">
+          <div class="quick-actions">
+            <div class="quick-action">
+              <span class="quick-action__icon"><i class="fa-solid fa-stethoscope"></i></span>
+              <div>
+                <h3>New Patient Visit</h3>
+                <p>Comprehensive foot assessment and consultation.</p>
+                <a class="learn-more" href="./booking.html">Book now</a>
+              </div>
+            </div>
+            <div class="quick-action">
+              <span class="quick-action__icon"><i class="fa-solid fa-shoe-prints"></i></span>
+              <div>
+                <h3>Custom Orthotics</h3>
+                <p>Bespoke insoles for alignment, sports and daily wear.</p>
+                <a class="learn-more" href="./booking.html">Book now</a>
+              </div>
+            </div>
+            <div class="quick-action">
+              <span class="quick-action__icon"><i class="fa-solid fa-heart-pulse"></i></span>
+              <div>
+                <h3>Diabetic Foot Care</h3>
+                <p>Expert assessment, wound care and prevention.</p>
+                <a class="learn-more" href="./booking.html">Book now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WELCOME -->
+      <section class="section">
+        <div class="container">
+          <div class="welcome-block">
+            <div class="welcome-block__media">
+              <img src="./images/practice-6.png" alt="Foot Med Podiatrist Inc clinic at work" loading="lazy" />
+            </div>
+            <div class="welcome-block__content">
+              <span class="section-label">Welcome to Foot Med</span>
+              <h2 class="welcome-block__title">A trusted name in podiatry care in Polokwane</h2>
+              <p class="welcome-block__text">
+                Led by Podiatrist N. Mashaba (HPCSA: CH0007730), Foot Med Podiatrist Inc delivers
+                professional, evidence-based foot and ankle care. We serve patients across Polokwane
+                Central, Bendor, Seshego and the wider Limpopo region.
+              </p>
+              <div class="feature-list">
+                <span class="feature-list__item">HPCSA registered</span>
+                <span class="feature-list__item">Modern equipment</span>
+                <span class="feature-list__item">Diabetic foot expertise</span>
+                <span class="feature-list__item">Sports podiatry</span>
+                <span class="feature-list__item">Custom orthotics</span>
+                <span class="feature-list__item">Family-friendly care</span>
+              </div>
+              <a class="btn btn-primary" href="./booking.html">Book your visit</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services" class="section section-alt">
         <div class="container">
           <div class="section-header">
             <span class="section-label">Care you can trust</span>
@@ -135,8 +192,8 @@
           <div class="cards">
             <article class="service-card">
               <div class="service-card__media">
-                <img src="./images/practice-3.png" alt="Cracked heels and skin nails care example" loading="lazy" />
-                <span class="service-card__badge" aria-hidden="true">&#10026;</span>
+                <img src="./images/practice-3.png" alt="Skin and nails care" loading="lazy" />
+                <span class="service-card__badge"><i class="fa-solid fa-hand-sparkles"></i></span>
               </div>
               <div class="service-card__body">
                 <h3 class="service-card__title">Skin &amp; Nails</h3>
@@ -155,8 +212,8 @@
 
             <article class="service-card">
               <div class="service-card__media">
-                <img src="./images/practice-7.png" alt="Pain and mobility foot care example" loading="lazy" />
-                <span class="service-card__badge" aria-hidden="true">&#9854;</span>
+                <img src="./images/practice-7.png" alt="Pain and mobility care" loading="lazy" />
+                <span class="service-card__badge"><i class="fa-solid fa-person-walking"></i></span>
               </div>
               <div class="service-card__body">
                 <h3 class="service-card__title">Pain &amp; Mobility</h3>
@@ -171,8 +228,8 @@
 
             <article class="service-card">
               <div class="service-card__media">
-                <img src="./images/practice-8.png" alt="Specialized diabetic foot and wound care example" loading="lazy" />
-                <span class="service-card__badge" aria-hidden="true">&#10010;</span>
+                <img src="./images/practice-8.png" alt="Specialized diabetic care" loading="lazy" />
+                <span class="service-card__badge"><i class="fa-solid fa-stethoscope"></i></span>
               </div>
               <div class="service-card__body">
                 <h3 class="service-card__title">Specialized Care</h3>
@@ -189,47 +246,112 @@
         </div>
       </section>
 
-      <section id="booking" class="section section-alt">
+      <!-- SPECIALTIES GRID -->
+      <section class="section">
         <div class="container">
           <div class="section-header">
-            <span class="section-label">Live availability</span>
-            <h2 class="section-title">Book an Appointment</h2>
-            <p class="section-intro">
-              Choose the most convenient slot directly in the calendar below.
-            </p>
+            <span class="section-label">Conditions we treat</span>
+            <h2 class="section-title">Our Specialties</h2>
           </div>
 
-          <div class="card">
-            <div
-              class="calendly-inline-widget"
-              data-url="https://calendly.com/npodiatrist/30min?hide_gdpr_banner=1&primary_color=c01111"
-              style="min-width: 320px; height: 700px;"
-            ></div>
-            <script
-              type="text/javascript"
-              src="https://assets.calendly.com/assets/external/widget.js"
-              async
-            ></script>
+          <div class="specialties-grid">
+            <div class="specialty-item">
+              <span class="specialty-item__icon"><i class="fa-solid fa-shoe-prints"></i></span>
+              <span class="specialty-item__label">Heel pain</span>
+            </div>
+            <div class="specialty-item specialty-item--active">
+              <span class="specialty-item__icon"><i class="fa-solid fa-heart-pulse"></i></span>
+              <span class="specialty-item__label">Diabetic care</span>
+            </div>
+            <div class="specialty-item">
+              <span class="specialty-item__icon"><i class="fa-solid fa-bone"></i></span>
+              <span class="specialty-item__label">Plantar fasciitis</span>
+            </div>
+            <div class="specialty-item">
+              <span class="specialty-item__icon"><i class="fa-solid fa-person-running"></i></span>
+              <span class="specialty-item__label">Sports injuries</span>
+            </div>
+            <div class="specialty-item">
+              <span class="specialty-item__icon"><i class="fa-solid fa-hand-holding-medical"></i></span>
+              <span class="specialty-item__label">Ingrown toenails</span>
+            </div>
+            <div class="specialty-item">
+              <span class="specialty-item__icon"><i class="fa-solid fa-virus"></i></span>
+              <span class="specialty-item__label">Fungal nails</span>
+            </div>
+            <div class="specialty-item">
+              <span class="specialty-item__icon"><i class="fa-solid fa-shield-heart"></i></span>
+              <span class="specialty-item__label">Wound care</span>
+            </div>
+            <div class="specialty-item">
+              <span class="specialty-item__icon"><i class="fa-solid fa-circle-nodes"></i></span>
+              <span class="specialty-item__label">Custom orthotics</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="gallery-link" class="section">
+      <!-- DOCTOR + BOOKING -->
+      <section class="section section-alt">
         <div class="container">
           <div class="section-header">
-            <span class="section-label">Practice spaces</span>
-            <h2 class="section-title">Practice Gallery</h2>
-            <p class="section-intro">
-              View all treatment and practice images on the dedicated gallery page.
-            </p>
+            <span class="section-label">Meet your podiatrist</span>
+            <h2 class="section-title">Care Led by Experts</h2>
           </div>
-          <div style="text-align:center;">
-            <a class="btn btn-primary" href="./gallery.html">Open full gallery</a>
+
+          <div class="welcome-block">
+            <div class="doctor-card" style="max-width: 360px; margin: 0 auto;">
+              <div class="doctor-card__media">
+                <i class="fa-solid fa-user-doctor"></i>
+              </div>
+              <div class="doctor-card__info">
+                <p class="doctor-card__name">N. Mashaba</p>
+                <p class="doctor-card__specialty">Podiatrist</p>
+                <div class="doctor-card__social">
+                  <a href="https://wa.me/27759587273" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                  <a href="tel:+27759587273" aria-label="Call"><i class="fa-solid fa-phone"></i></a>
+                  <a href="./contact.html" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+                </div>
+              </div>
+              <a class="doctor-card__cta" href="./booking.html">Book consultation</a>
+            </div>
+
+            <div>
+              <span class="section-label">Live availability</span>
+              <h2 class="welcome-block__title">Book an Appointment</h2>
+              <p class="welcome-block__text">
+                Use the live calendar to view available slots. You will receive an email confirmation
+                immediately after booking. Need help? Call us on
+                <a href="tel:+27759587273">075 958 7273</a> or
+                <a href="https://wa.me/27759587273" target="_blank" rel="noopener noreferrer">WhatsApp</a>.
+              </p>
+              <div class="card" style="padding: 1rem;">
+                <div
+                  class="calendly-inline-widget"
+                  data-url="https://calendly.com/npodiatrist/30min?hide_gdpr_banner=1&primary_color=c01111"
+                  style="min-width: 280px; height: 600px;"
+                ></div>
+                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="trust" class="section section-alt">
+      <!-- TESTIMONIAL -->
+      <section class="testimonial-section">
+        <div class="container">
+          <div class="testimonial-section__quote-mark">"</div>
+          <p class="testimonial-section__text" data-edit-key="testimonialText">
+            Foot Med gave me my mobility back. The diabetic foot care programme is genuinely
+            life-changing — professional, kind, and thorough every visit.
+          </p>
+          <p class="testimonial-section__author" data-edit-key="testimonialAuthor">— Patient, Polokwane</p>
+        </div>
+      </section>
+
+      <!-- TRUST + TV -->
+      <section id="trust" class="section">
         <div class="container">
           <div class="section-header">
             <span class="section-label">Recognized care</span>
@@ -252,15 +374,16 @@
               <h3>Registered and trusted care</h3>
               <p>HPCSA registered podiatry practice focused on safe treatment outcomes.</p>
               <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem;">
-                <a class="btn btn-primary" href="https://hpcsaonline.custhelp.com/app/iregister_details/reg_number/CH%20%20%200007730" target="_blank" rel="noopener noreferrer">Verify on HPCSA register</a>
-                <a class="btn btn-outline" href="./reviews.html">Read patient reviews</a>
+                <a class="btn btn-primary" href="https://hpcsaonline.custhelp.com/app/iregister_details/reg_number/CH%20%20%200007730" target="_blank" rel="noopener noreferrer">Verify on HPCSA</a>
+                <a class="btn btn-outline" href="./reviews.html">Read reviews</a>
               </div>
             </article>
           </div>
         </div>
       </section>
 
-      <section id="reviews" class="section">
+      <!-- REVIEWS CAROUSEL -->
+      <section id="reviews" class="section section-alt">
         <div class="container">
           <div class="section-header">
             <span class="section-label">Patient feedback</span>
@@ -272,15 +395,15 @@
               <div class="reviews-track" data-carousel-track>
                 <article class="card review-slide">
                   <p class="meta">Google review</p>
-                  <p>"Professional podiatry care and excellent diabetic foot support."</p>
+                  <p style="font-size:1.05rem;line-height:1.6;">"Professional podiatry care and excellent diabetic foot support."</p>
                 </article>
                 <article class="card review-slide">
                   <p class="meta">Google review</p>
-                  <p>"Best foot doctor in Polokwane for heel pain treatment."</p>
+                  <p style="font-size:1.05rem;line-height:1.6;">"Best foot doctor in Polokwane for heel pain treatment."</p>
                 </article>
                 <article class="card review-slide">
                   <p class="meta">Google review</p>
-                  <p>"Friendly team and fast custom orthotics service in Limpopo."</p>
+                  <p style="font-size:1.05rem;line-height:1.6;">"Friendly team and fast custom orthotics service in Limpopo."</p>
                 </article>
               </div>
             </div>
@@ -288,7 +411,8 @@
         </div>
       </section>
 
-      <section class="section section-alt">
+      <!-- BLOGS -->
+      <section class="section">
         <div class="container">
           <div class="section-header">
             <span class="section-label">Trusted sources</span>
@@ -300,37 +424,37 @@
               <div class="blogs-track" data-carousel-track>
                 <article class="card blog-slide">
                   <a href="https://www.health.gov.za/" target="_blank" rel="noopener noreferrer">
-                    <img class="blog-thumb" src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=1200&q=80" alt="South African Department of Health blog source thumbnail" loading="lazy" />
+                    <img class="blog-thumb" src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=1200&q=80" alt="South African Department of Health" loading="lazy" />
                     <p class="blog-site">South African Department of Health</p>
                   </a>
                 </article>
                 <article class="card blog-slide">
                   <a href="https://www.diabetessa.org.za/" target="_blank" rel="noopener noreferrer">
-                    <img class="blog-thumb" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80" alt="Diabetes South Africa blog source thumbnail" loading="lazy" />
+                    <img class="blog-thumb" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80" alt="Diabetes South Africa" loading="lazy" />
                     <p class="blog-site">Diabetes South Africa</p>
                   </a>
                 </article>
                 <article class="card blog-slide">
                   <a href="https://www.ampath.co.za/" target="_blank" rel="noopener noreferrer">
-                    <img class="blog-thumb" src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" alt="Ampath health education blog source thumbnail" loading="lazy" />
+                    <img class="blog-thumb" src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" alt="Ampath" loading="lazy" />
                     <p class="blog-site">Ampath</p>
                   </a>
                 </article>
                 <article class="card blog-slide">
                   <a href="https://www.netcare.co.za/" target="_blank" rel="noopener noreferrer">
-                    <img class="blog-thumb" src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80" alt="Netcare health articles blog source thumbnail" loading="lazy" />
+                    <img class="blog-thumb" src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80" alt="Netcare" loading="lazy" />
                     <p class="blog-site">Netcare</p>
                   </a>
                 </article>
                 <article class="card blog-slide">
                   <a href="https://www.ssisa.com/" target="_blank" rel="noopener noreferrer">
-                    <img class="blog-thumb" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&q=80" alt="Sports Science Institute of South Africa blog source thumbnail" loading="lazy" />
+                    <img class="blog-thumb" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&q=80" alt="Sports Science Institute" loading="lazy" />
                     <p class="blog-site">Sports Science Institute of South Africa</p>
                   </a>
                 </article>
                 <article class="card blog-slide">
                   <a href="https://www.hpcsa.co.za/" target="_blank" rel="noopener noreferrer">
-                    <img class="blog-thumb" src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=1200&q=80" alt="HPCSA professional standards blog source thumbnail" loading="lazy" />
+                    <img class="blog-thumb" src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=1200&q=80" alt="HPCSA" loading="lazy" />
                     <p class="blog-site">HPCSA</p>
                   </a>
                 </article>
@@ -340,7 +464,8 @@
         </div>
       </section>
 
-      <section id="contact-cards" class="section">
+      <!-- CONTACT CARDS -->
+      <section id="contact-cards" class="section section-alt">
         <div class="container">
           <div class="section-header">
             <span class="section-label">Get in touch</span>
@@ -349,7 +474,7 @@
 
           <div class="contact-cards">
             <div class="contact-card">
-              <span class="contact-card__icon" aria-hidden="true">&#128222;</span>
+              <span class="contact-card__icon"><i class="fa-solid fa-phone"></i></span>
               <p class="contact-card__label">Emergency</p>
               <div class="contact-card__value">
                 <a href="tel:+27759587273">075 958 7273</a><br />
@@ -358,7 +483,7 @@
             </div>
 
             <div class="contact-card contact-card--highlight">
-              <span class="contact-card__icon" aria-hidden="true">&#128205;</span>
+              <span class="contact-card__icon"><i class="fa-solid fa-location-dot"></i></span>
               <p class="contact-card__label">Location</p>
               <div class="contact-card__value">
                 103 Marshall Street<br />
@@ -367,7 +492,7 @@
             </div>
 
             <div class="contact-card">
-              <span class="contact-card__icon" aria-hidden="true">&#9993;</span>
+              <span class="contact-card__icon"><i class="fa-regular fa-envelope"></i></span>
               <p class="contact-card__label">Email &amp; query</p>
               <div class="contact-card__value">
                 <a href="./contact.html">Send a query</a><br />
@@ -376,7 +501,7 @@
             </div>
 
             <div class="contact-card">
-              <span class="contact-card__icon" aria-hidden="true">&#128340;</span>
+              <span class="contact-card__icon"><i class="fa-regular fa-clock"></i></span>
               <p class="contact-card__label">Working hours</p>
               <div class="contact-card__value">
                 Mon - Fri: 08:00 - 17:00<br />
@@ -411,7 +536,7 @@
               <input type="hidden" name="name" value="Newsletter signup" />
               <input type="hidden" name="phone" value="n/a" />
               <input type="hidden" name="message" value="Newsletter subscription request" />
-              <button type="submit" aria-label="Subscribe">Send</button>
+              <button type="submit" aria-label="Subscribe"><i class="fa-solid fa-paper-plane"></i></button>
             </form>
           </div>
 
@@ -451,9 +576,9 @@
         <div class="footer-bottom">
           <p class="footer-copy">&copy; 2026 Foot Med Podiatrist Inc. All rights reserved.</p>
           <div class="footer-social">
-            <a href="https://wa.me/27759587273" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">W</a>
-            <a href="tel:+27759587273" aria-label="Call">&#128222;</a>
-            <a href="./contact.html" aria-label="Email">&#9993;</a>
+            <a href="https://wa.me/27759587273" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="tel:+27759587273" aria-label="Call"><i class="fa-solid fa-phone"></i></a>
+            <a href="./contact.html" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
           </div>
         </div>
       </div>
