@@ -3,6 +3,7 @@ const { DynamoDBDocumentClient } = require("@aws-sdk/lib-dynamodb");
 const {
   awsCredentialsProvider,
 } = require("@vercel/oidc-aws-credentials-provider");
+const { timingSafeEqualString } = require("./_security");
 
 const region = process.env.AWS_REGION || "ap-northeast-1";
 const tableName =
@@ -51,7 +52,11 @@ function requireAdmin(req, res) {
   const headerUser = req.headers["x-admin-user"] || "";
   const headerPass = req.headers["x-admin-pass"] || "";
 
-  if (headerUser !== adminUser || headerPass !== adminPass) {
+  // Evaluate both comparisons to avoid short-circuit timing differences.
+  const userMatches = timingSafeEqualString(headerUser, adminUser);
+  const passMatches = timingSafeEqualString(headerPass, adminPass);
+
+  if (!(userMatches && passMatches)) {
     res.status(401).json({ error: "Unauthorized" });
     return false;
   }

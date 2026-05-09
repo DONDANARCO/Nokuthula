@@ -33,12 +33,20 @@
             <form class="form" action="/api/submissions" method="POST">
               <input type="hidden" name="formType" value="contact-page" />
               <input type="hidden" name="sourcePage" value="contact.html" />
+              <input
+                type="text"
+                name="company"
+                tabindex="-1"
+                autocomplete="off"
+                aria-hidden="true"
+                style="position:absolute;left:-9999px;opacity:0;pointer-events:none;"
+              />
               <label for="contact-name">Name</label>
               <input id="contact-name" name="name" type="text" required />
               <label for="contact-email">Email</label>
               <input id="contact-email" name="email" type="email" required />
               <label for="contact-phone">Phone</label>
-              <input id="contact-phone" name="phone" type="tel" />
+              <input id="contact-phone" name="phone" type="tel" required />
               <label for="contact-message">Message</label>
               <textarea id="contact-message" name="message" rows="5" required></textarea>
               <button class="btn btn-primary" type="submit">Send query</button>

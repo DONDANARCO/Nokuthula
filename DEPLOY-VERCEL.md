@@ -26,8 +26,9 @@ In Vercel project settings, add environment variables:
 - `DYNAMODB_TABLE_NAME` (you provided `NMashabpodiatrist`)
 - `DYNAMODB_TABLE_PARTITION_KEY` (`PK`)
 - `DYNAMODB_TABLE_SORT_KEY` (`SK`)
-- `ADMIN_USERNAME` (currently defaults to `NMPodiatrist`)
-- `ADMIN_PASSWORD` (currently defaults to `P0diatrist`)
+- `ADMIN_USERNAME` (required)
+- `ADMIN_PASSWORD` (required)
+- `ALLOWED_ORIGINS` (required, comma-separated; include your Vercel production URL and preview URL patterns)
 
 The forms in `index.html` and `contact.html` already post to `/api/submissions`.
 The admin dashboard is available at `/admin.html`.
@@ -35,7 +36,8 @@ The admin dashboard is available at `/admin.html`.
 Notes:
 - If `AWS_ROLE_ARN` is set, backend uses `@vercel/oidc-aws-credentials-provider`.
 - Static keys are optional when role-based auth is configured.
-- For production, set your own strong `ADMIN_USERNAME` and `ADMIN_PASSWORD`.
+- Admin authentication has no default fallback anymore; env vars must be set.
+- Form and admin endpoints now have origin checks, honeypot bot checks, request rate limiting, and strict server-side validation.
 
 ## 2) Deploy from Vercel dashboard (easiest)
 
@@ -74,8 +76,7 @@ Check these pages load:
 
 Check these actions:
 
-- Booking form submits to your mailbox
-- Contact form submits to your mailbox
+- Contact forms submit successfully and show confirmation banner
 - WhatsApp button opens chat
 - Phone link dials `075 958 7273`
 - Map loads correctly

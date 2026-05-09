@@ -1,5 +1,6 @@
 const { GetCommand, PutCommand } = require("@aws-sdk/lib-dynamodb");
 const { getDb, requireAdmin } = require("../_db");
+const { rateLimit } = require("../_security");
 
 const PARTITION_KEY = process.env.DYNAMODB_TABLE_PARTITION_KEY || "PK";
 const SORT_KEY = process.env.DYNAMODB_TABLE_SORT_KEY || "SK";
@@ -16,6 +17,7 @@ function parseJson(req) {
 
 module.exports = async (req, res) => {
   if (!requireAdmin(req, res)) return;
+  if (!rateLimit(req, res, "admin-content", 120, 10 * 60 * 1000)) return;
   const { ddb, tableName } = getDb();
 
   if (req.method === "GET") {

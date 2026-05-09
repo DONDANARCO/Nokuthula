@@ -1,8 +1,10 @@
 const { ScanCommand } = require("@aws-sdk/lib-dynamodb");
 const { getDb, requireAdmin } = require("../_db");
+const { rateLimit } = require("../_security");
 
 module.exports = async (req, res) => {
   if (!requireAdmin(req, res)) return;
+  if (!rateLimit(req, res, "admin-submissions", 120, 10 * 60 * 1000)) return;
   if (req.method !== "GET") {
     return res.status(405).json({ error: "Method not allowed" });
   }
