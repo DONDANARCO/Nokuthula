@@ -217,6 +217,30 @@
         font-size: 0.78rem;
       }
 
+      .site-powered {
+        text-align: center;
+        padding: 0.85rem 1rem;
+        background: #1a1a1a;
+        border-top: 1px solid var(--line);
+      }
+
+      .site-powered .powered-by {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.55);
+        text-decoration: none;
+      }
+
+      .site-powered .powered-by__web,
+      .site-powered .powered-by__beam {
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .site-powered .powered-by__x {
+        color: #841617;
+        font-weight: 600;
+      }
+
       @media (max-width: 1000px) {
         .grid {
           grid-template-columns: 1fr;
@@ -250,5 +274,11 @@
         ></iframe>
       </section>
     </main>
+
+    <p class="site-powered">
+      <a href="https://www.webxbeam.co.za" target="_blank" rel="noopener noreferrer" class="powered-by" aria-label="Powered by WebXBeam">
+        Powered by <span class="powered-by__web">Web</span><span class="powered-by__x">X</span><span class="powered-by__beam">Beam</span>
+      </a>
+    </p>
   </body>
 </html>

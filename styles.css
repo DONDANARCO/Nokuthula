@@ -1059,6 +1059,11 @@ nav.primary-nav a.active::after {
 /* ============================================================
    Carousels
    ============================================================ */
+.reviews-embed {
+  margin-top: var(--space-6);
+  min-height: 200px;
+}
+
 .reviews-carousel,
 .blogs-carousel { display: block; width: 100%; overflow: hidden; }
 
@@ -1232,6 +1237,32 @@ nav.primary-nav a.active::after {
   transition: all var(--transition-fast);
 }
 .footer-social a:hover { background: var(--color-accent); border-color: var(--color-accent); }
+
+.footer-powered {
+  text-align: center;
+  padding: var(--space-4) 0 var(--space-5);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.powered-by {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+
+.powered-by:hover { opacity: 0.9; }
+
+.powered-by__web,
+.powered-by__beam {
+  color: #fff;
+  font-weight: 600;
+}
+
+.powered-by__x {
+  color: #841617;
+  font-weight: 600;
+}
 
 .map-frame { min-height: 220px; }
 
